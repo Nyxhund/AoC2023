@@ -5,7 +5,7 @@ Advent of Code 2023, my second attempt at the challenge...
 Doing it in Haskell again, trying to commit more to the language. If I struggle to much, I might switch to some other easier scripting language...
 
 - [X] Day  1
-- [ ] Day  2
+- [X] Day  2
 - [ ] Day  3
 - [ ] Day  4
 - [ ] Day  5
