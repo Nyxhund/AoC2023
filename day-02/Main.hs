@@ -17,9 +17,10 @@ maxOfSeen (nb : color : list) = [red : tred, green : tgreen, blue : tblue]
 main = do
     file <- readFile "input.txt"
     putStrLn "Exo 1:"
-    let games = map (map (filter (\c -> c /= ','))) $ map concat $ map (map (filter (\s -> (s /= "" && s /= "Game" && last s /= ':')))) $ map (map (splitOn " ")) $ map (splitOn ";") $ lines $ file
-    let maximumPlays = zip [1..] $ map (map maximum) $ map maxOfSeen games
-    print $ sum $ map fst $ filter (\(id, [red, green, blue]) -> red <= 12 && green <= 13 && blue <= 14) $ maximumPlays
+    let games = map (map (filter (/= ',')) . concatMap (filter (\s -> s /= "" && s /= "Game" && last s /= ':') . splitOn " ") . splitOn ";") $ lines file
+    let maximums = map (map maximum . maxOfSeen) games
+    let maximumPlays = zip [1..] maximums
+    print $ sum $ map fst $ filter (\(id, [red, green, blue]) -> red <= 12 && green <= 13 && blue <= 14) maximumPlays
 
     putStrLn "Exo 2:"
-    print $ sum $ map product $ map (map maximum) $ map maxOfSeen games
+    print $ sum $ map product maximums
